@@ -1,4 +1,4 @@
-package com.example.ecodrive;
+package com.ecodrives.ecodrive;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

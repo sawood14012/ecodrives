@@ -21,14 +21,16 @@ class _BikesPageState extends State<BikesPage> {
         backgroundColor: Colors.green,
       ),
       drawer: new Drawer(
+
         child: ListView(
+
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: new Text('Piyush Mehta'),
-              accountEmail: new Text('testemail@test.com'),
+              accountName: new Text('--'),
+              accountEmail: new Text('--'),
               currentAccountPicture: new CircleAvatar(
-                backgroundImage: new NetworkImage('http://i.pravatar.cc/300'),
+                backgroundImage: new NetworkImage('https://firebasestorage.googleapis.com/v0/b/quiz-42e65.appspot.com/o/WhatsApp%20Image%202020-01-29%20at%2022.45.53.jpeg?alt=media&token=64b5d018-18c6-4adf-b3fb-c8768097c80e'),
               ),
             ),
             // ListTile(
