@@ -14,7 +14,7 @@ class RootPage extends StatefulWidget {
   RootPage({this.auth});
 
   final BaseAuth auth;
-  bool checkdoc = false;
+  final bool checkdoc = false;
 
   @override
   State<StatefulWidget> createState() => new _RootPageState();
@@ -163,19 +163,19 @@ class _RootPageState extends State<RootPage> {
     } else {
       if (name == null || name.length < 3) {
         setState(() {
-          // Navigator.of(context).pop(context);
+//           Navigator.of(context).pop(context);
           _errorMessageStep2 = "Invalid Name";
-          // ShowaddAddressdailog();
+//           ShowaddAddressdailog();
         });
       } else if (address == null || address.length < 5) {
         setState(() {
-          //Navigator.of(context).pop(context);
+//          Navigator.of(context).pop(context);
           _errorMessageStep2 = "Invalid Address";
           // ShowaddAddressdailog();
         });
       } else if (phone == null || phone.length < 10) {
         setState(() {
-          // Navigator.of(context).pop(context);
+//           Navigator.of(context).pop(context);
           _errorMessageStep2 = "Invalid Phone";
           // ShowaddAddressdailog();
         });

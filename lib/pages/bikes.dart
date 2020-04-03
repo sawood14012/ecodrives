@@ -2,6 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecodrive/pages/book.dart';
+import 'rides.dart';
+import 'verify_profile.dart';
+import 'loyality_page.dart';
+import 'complaint_box.dart';
+import 'repair_page.dart';
 
 class BikesPage extends StatefulWidget {
   @override
@@ -21,70 +26,69 @@ class _BikesPageState extends State<BikesPage> {
         backgroundColor: Colors.green,
       ),
       drawer: new Drawer(
-
         child: ListView(
-
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: new Text('--'),
               accountEmail: new Text('--'),
               currentAccountPicture: new CircleAvatar(
-                backgroundImage: new NetworkImage('https://firebasestorage.googleapis.com/v0/b/quiz-42e65.appspot.com/o/WhatsApp%20Image%202020-01-29%20at%2022.45.53.jpeg?alt=media&token=64b5d018-18c6-4adf-b3fb-c8768097c80e'),
+                backgroundImage: new NetworkImage(
+                    'https://firebasestorage.googleapis.com/v0/b/quiz-42e65.appspot.com/o/WhatsApp%20Image%202020-01-29%20at%2022.45.53.jpeg?alt=media&token=64b5d018-18c6-4adf-b3fb-c8768097c80e'),
               ),
             ),
-            // ListTile(
-            //   title: new Text('Your Rides'),
-            //   onTap: () {
-            //     Navigator.of(context).pop();
-            //     Navigator.push(
-            //         context,
-            //         new MaterialPageRoute(
-            //             builder: (BuildContext context) => new Rides()));
-            //   },
-            // ),
-            // ListTile(
-            //   title: new Text('Verify your Profile'),
-            //   onTap: () {
-            //     Navigator.of(context).pop();
-            //     Navigator.push(
-            //         context,
-            //         new MaterialPageRoute(
-            //             builder: (BuildContext context) =>
-            //                 new VerifyProfile()));
-            //   },
-            // ),
-            // ListTile(
-            //   title: new Text('Loyalty Programme'),
-            //   onTap: () {
-            //     Navigator.of(context).pop();
-            //     Navigator.push(
-            //         context,
-            //         new MaterialPageRoute(
-            //             builder: (BuildContext context) => new LoyalityPage()));
-            //   },
-            // ),
-            // ListTile(
-            //   title: new Text('Complaint Box'),
-            //   onTap: () {
-            //     Navigator.of(context).pop();
-            //     Navigator.push(
-            //         context,
-            //         new MaterialPageRoute(
-            //             builder: (BuildContext context) =>
-            //                 new ComplaintPage()));
-            //   },
-            // ),
-            // ListTile(
-            //   title: new Text('Repair'),
-            //   onTap: () {
-            //     Navigator.of(context).pop();
-            //     Navigator.push(
-            //         context,
-            //         new MaterialPageRoute(
-            //             builder: (BuildContext context) => new RepairPage()));
-            //   },
-            // ),
+            ListTile(
+              title: new Text('Your Rides'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new Rides()));
+              },
+            ),
+            ListTile(
+              title: new Text('Verify your Profile'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new VerifyProfile()));
+              },
+            ),
+            ListTile(
+              title: new Text('Loyalty Programme'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new LoyalityPage()));
+              },
+            ),
+            ListTile(
+              title: new Text('Complaint Box'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new ComplaintPage()));
+              },
+            ),
+            ListTile(
+              title: new Text('Repair'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (BuildContext context) => new RepairPage()));
+              },
+            ),
             ListTile(
               title: new Text(
                 'Need Help',
@@ -126,40 +130,33 @@ class _BikesPageState extends State<BikesPage> {
                 SizedBox(
                   height: 10.0,
                 ),
-
                 Text('E Drives', style: TextStyle(fontSize: 24.0)),
                 SizedBox(
                   height: 10.0,
                 ),
-                //  Padding(
-                //    padding: const EdgeInsets.all(16.0),
-                //    child: Row(
-
-                //      mainAxisAlignment: MainAxisAlignment.start,
-                //     children: <Widget>[
-                //       Expanded(child: Text('Range :')),
-                //       Expanded(child: Text('120km on single charge '))
-                //     ],
-                // ),
-                //  ),
-                //  Row(
-                //    mainAxisAlignment: MainAxisAlignment.start,
-                //   children: <Widget>[
-                //     Text('Speed :'),
-                //     Text('45 Kmph')
-                //   ],
-                // ), Row(
-                //    mainAxisAlignment: MainAxisAlignment.start,
-                //   children: <Widget>[
-                //     Text('Charging Time:'),
-                //     Text('4 hours')
-                //   ],
-                // ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(child: Text('Range :')),
+                      Expanded(child: Text('120km on single charge '))
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[Text('Speed :'), Text('45 Kmph')],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[Text('Charging Time:'), Text('4 hours')],
+                ),
                 Text(
                     'Range :  120km on single charge \n\nSpeed :  45kmph \n\nCharging time :  4hours\n',
                     style: TextStyle(fontSize: 16.0)),
-                // Text('Eco Bike', style: TextStyle(fontSize: 24.0)),
-                // Text('Eco Bike', style: TextStyle(fontSize: 24.0)),
+                Text('Eco Bike', style: TextStyle(fontSize: 24.0)),
+                Text('Eco Bike', style: TextStyle(fontSize: 24.0)),
               ],
             ),
 
