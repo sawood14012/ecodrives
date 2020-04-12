@@ -38,8 +38,6 @@ class _adddetails extends State<Adddetails> {
   String phone = '';
 
   String name = '';
-  String workingFor = 'Swiggy';
-  String registeredAs = 'Bike ID';
 
   _adddetails() {
     _filtername.addListener(() {
@@ -97,11 +95,7 @@ class _adddetails extends State<Adddetails> {
       'uid': user.uid,
       'license': "",
       'Verified': false,
-      'Working for': workingFor,
-      "Registered as": registeredAs,
     });
-    print(workingFor);
-    print(registeredAs);
     setnext();
   }
 
@@ -155,14 +149,14 @@ class _adddetails extends State<Adddetails> {
   void performCheck(FirebaseUser guser) {
     print(phone.length);
     print(address.length);
-//    if (address != null &&
-//        phone != null &&
-//        address.length > 5 &&
-//        phone.length == 15 &&
-//        name != null &&
-//        name.length > 3) {
-    if (name != null && name.length > 3) {
+    if (address != null &&
+        phone != null &&
+        address.length > 5 &&
+        phone.length == 15 &&
+        name != null &&
+        name.length > 3) {
       //Navigator.of(context).pop();
+
       adduserdata(guser);
       if (_validateAndSave()) {
         print("form validated");
@@ -219,96 +213,36 @@ class _adddetails extends State<Adddetails> {
                   ),
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Workinig for: ',
+              new Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                child: new TextField(
+                  controller: _filteraddress,
+                  keyboardType: TextInputType.text,
+                  scrollPadding: const EdgeInsets.all(20.0),
+                  decoration: InputDecoration(
+                    fillColor: Colors.green,
+                    focusColor: Colors.green,
+                    hoverColor: Colors.green,
+                    prefixIcon: new Icon(Icons.location_city),
+                    hintText: " Enter your address",
                   ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  DropdownButton<String>(
-                    value: workingFor,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text('Swiggy'),
-                        value: 'Swiggy',
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Zomato'),
-                        value: 'Zomato',
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Others'),
-                        value: 'Others',
-                      ),
-                    ],
-                    onChanged: (newValue) {
-                      setState(() {
-                        workingFor = newValue;
-                      });
-                    },
-                  ),
-                ],
+                ),
               ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Registered As: ',
+              new Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                child: new TextField(
+                  controller: _filterphone,
+                  keyboardType: TextInputType.text,
+                  scrollPadding: const EdgeInsets.all(20.0),
+                  decoration: InputDecoration(
+                    fillColor: Colors.green,
+                    focusColor: Colors.green,
+                    hoverColor: Colors.green,
+                    prefixIcon: new Icon(Icons.credit_card),
+                    hintText: "Enter your Driving License number",
                   ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  DropdownButton<String>(
-                    value: registeredAs,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text('Bike ID'),
-                        value: 'Bike ID',
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Cycle ID'),
-                        value: 'Cycle ID',
-                      ),
-                    ],
-                    onChanged: (newValue) {
-                      setState(() {
-                        registeredAs = newValue;
-                      });
-                    },
-                  ),
-                ],
+                ),
               ),
-//              new Padding(
-//                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-//                child: new TextField(
-//                  controller: _filteraddress,
-//                  keyboardType: TextInputType.text,
-//                  scrollPadding: const EdgeInsets.all(20.0),
-//                  decoration: InputDecoration(
-//                    fillColor: Colors.green,
-//                    focusColor: Colors.green,
-//                    hoverColor: Colors.green,
-//                    prefixIcon: new Icon(Icons.location_city),
-//                    hintText: " Enter your address",
-//                  ),
-//                ),
-//              ),
-//              new Padding(
-//                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-//                child: new TextField(
-//                  controller: _filterphone,
-//                  keyboardType: TextInputType.text,
-//                  scrollPadding: const EdgeInsets.all(20.0),
-//                  decoration: InputDecoration(
-//                    fillColor: Colors.green,
-//                    focusColor: Colors.green,
-//                    hoverColor: Colors.green,
-//                    prefixIcon: new Icon(Icons.credit_card),
-//                    hintText: "Enter your Driving License number",
-//                  ),
-//                ),
-//              ),
               new Container(
                 height: 10.0,
               ),

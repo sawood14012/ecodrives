@@ -6,7 +6,6 @@ import 'package:ecodrive/pages/otppage.dart';
 import 'package:ecodrive/pages/loginui.dart';
 import 'package:ecodrive/services/authentication.dart';
 import 'package:ecodrive/pages/root_page.dart';
-import 'package:ecodrive/pages/adddetails_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); //this should be first line in
@@ -30,7 +29,6 @@ class MyApp extends StatelessWidget {
         '/homepage': (BuildContext context) => BikesPage(),
         '/loginpage': (BuildContext context) => MyApp(),
         '/otp': (BuildContext context) => OtpPage(),
-        '/adddetailpage': (BuildContext context) => Adddetails(),
       },
       home: RootPage(auth: Auth()), //MyAppPage(title: 'Eco Drive'),
     );
