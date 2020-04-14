@@ -93,6 +93,7 @@ class _Loginui extends State<Loginui> {
                         keyboardType: TextInputType.number,
                         cursorColor: Colors.black,
                         decoration: new InputDecoration(
+                          labelText: 'Enter your phone number',
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.green),
                           ),

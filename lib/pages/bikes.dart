@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,8 @@ import 'loyality_page.dart';
 import 'complaint_box.dart';
 import 'repair_page.dart';
 
+final userRef = Firestore.instance.collection('users');
+
 class BikesPage extends StatefulWidget {
   @override
   _BikesPageState createState() => new _BikesPageState();
@@ -15,12 +18,29 @@ class BikesPage extends StatefulWidget {
 
 class _BikesPageState extends State<BikesPage> {
   FirebaseAuth _auth = FirebaseAuth.instance;
+  String name;
+  String location;
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUsers();
+    super.initState();
+  }
+
+  getUsers() async {
+    final FirebaseUser user = await _auth.currentUser();
+    final uid = user.uid;
+    DocumentSnapshot doc = await userRef.document(uid).get();
+    name = await doc['Name'];
+    location = await doc['address'];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Book your Ecodrive!",
+          "Book your E-Drive!",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.green,
@@ -30,8 +50,8 @@ class _BikesPageState extends State<BikesPage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: new Text('--'),
-              accountEmail: new Text('--'),
+              accountName: new Text(name),
+              accountEmail: new Text(location),
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage(
                     'https://firebasestorage.googleapis.com/v0/b/quiz-42e65.appspot.com/o/WhatsApp%20Image%202020-01-29%20at%2022.45.53.jpeg?alt=media&token=64b5d018-18c6-4adf-b3fb-c8768097c80e'),
@@ -42,9 +62,11 @@ class _BikesPageState extends State<BikesPage> {
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) => new Rides()));
+                  context,
+                  new MaterialPageRoute(
+                    builder: (BuildContext context) => new Rides(),
+                  ),
+                );
               },
             ),
             ListTile(
@@ -125,6 +147,8 @@ class _BikesPageState extends State<BikesPage> {
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 ecobikeImgae(),
                 SizedBox(
@@ -134,27 +158,52 @@ class _BikesPageState extends State<BikesPage> {
                 SizedBox(
                   height: 10.0,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/appkm.jpg',
+                      height: 40.0,
+                    ),
+                    Text(
+                      'Range/Charge:  120 Km',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/battery-charging-line-icon-web-and-mobile.jpg',
+                      height: 20.0,
+                      width: 50.0,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text('Charging Time: 2hrs(60%)'),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(child: Text('Range :')),
-                      Expanded(child: Text('120km on single charge '))
-                    ],
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    'Rent the E- bicycle for delivery and upto 50% on your vehicle expenditure',
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[Text('Speed :'), Text('45 Kmph')],
+                SizedBox(
+                  height: 20.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[Text('Charging Time:'), Text('4 hours')],
-                ),
-                Text(
-                  'Range :  120km on single charge \n\nSpeed :  45kmph \n\nCharging time :  4hours\n',
-                  style: TextStyle(fontSize: 16.0),
+                Text('Monthly, Weekly, Daily plan for your need'),
+                SizedBox(
+                  height: 60.0,
                 ),
               ],
             ),
