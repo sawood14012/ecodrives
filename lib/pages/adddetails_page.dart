@@ -270,7 +270,7 @@ class _adddetails extends State<Adddetails> {
                     focusColor: Colors.green,
                     hoverColor: Colors.green,
                     prefixIcon: new Icon(Icons.location_city),
-                    hintText: " Enter your address",
+                    hintText: "Enter your address (E.g - New Bel Road)",
                   ),
                 ),
               ),
