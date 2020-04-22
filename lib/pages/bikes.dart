@@ -23,7 +23,9 @@ class _BikesPageState extends State<BikesPage> {
   @override
   void initState() {
     // TODO: implement initState
-    getUsers();
+    setState(() {
+      getUsers();
+    });
     super.initState();
   }
 
@@ -31,8 +33,8 @@ class _BikesPageState extends State<BikesPage> {
     final FirebaseUser user = await _auth.currentUser();
     final uid = user.uid;
     DocumentSnapshot doc = await userRef.document(uid).get();
-    name = await doc['Name'];
-    location = await doc['address'];
+    name = doc['Name'];
+    location = doc['address'];
   }
 
   @override
@@ -40,7 +42,7 @@ class _BikesPageState extends State<BikesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Book your E-Drive!",
+          "Book your E-Drives!",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.green,
@@ -50,77 +52,77 @@ class _BikesPageState extends State<BikesPage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: new Text(name),
-              accountEmail: new Text(location),
+              accountName: new Text(name == null ? "" : name),
+              accountEmail: new Text(location == null ? "" : location),
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage(
                     'https://firebasestorage.googleapis.com/v0/b/quiz-42e65.appspot.com/o/WhatsApp%20Image%202020-01-29%20at%2022.45.53.jpeg?alt=media&token=64b5d018-18c6-4adf-b3fb-c8768097c80e'),
               ),
             ),
-            ListTile(
-              title: new Text('Your Rides'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                    builder: (BuildContext context) => new Rides(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: new Text('Verify your Profile'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            new VerifyProfile()));
-              },
-            ),
-            ListTile(
-              title: new Text('Loyalty Programme'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) => new LoyalityPage()));
-              },
-            ),
-            ListTile(
-              title: new Text('Complaint Box'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            new ComplaintPage()));
-              },
-            ),
-            ListTile(
-              title: new Text('Repair'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (BuildContext context) => new RepairPage()));
-              },
-            ),
-            ListTile(
-              title: new Text(
-                'Need Help',
-                style: TextStyle(color: Colors.pink.withOpacity(1.0)),
-              ),
-              onTap: () => AlertDialog(
-                title: Text("For help"),
-                content: Text("tel://+918867208322"),
-              ),
-            ),
+//            ListTile(
+//              title: new Text('Your Rides'),
+//              onTap: () {
+//                Navigator.of(context).pop();
+//                Navigator.push(
+//                  context,
+//                  new MaterialPageRoute(
+//                    builder: (BuildContext context) => new Rides(),
+//                  ),
+//                );
+//              },
+//            ),
+//            ListTile(
+//              title: new Text('Verify your Profile'),
+//              onTap: () {
+//                Navigator.of(context).pop();
+//                Navigator.push(
+//                    context,
+//                    new MaterialPageRoute(
+//                        builder: (BuildContext context) =>
+//                            new VerifyProfile()));
+//              },
+//            ),
+//            ListTile(
+//              title: new Text('Loyalty Programme'),
+//              onTap: () {
+//                Navigator.of(context).pop();
+//                Navigator.push(
+//                    context,
+//                    new MaterialPageRoute(
+//                        builder: (BuildContext context) => new LoyalityPage()));
+//              },
+//            ),
+//            ListTile(
+//              title: new Text('Complaint Box'),
+//              onTap: () {
+//                Navigator.of(context).pop();
+//                Navigator.push(
+//                    context,
+//                    new MaterialPageRoute(
+//                        builder: (BuildContext context) =>
+//                            new ComplaintPage()));
+//              },
+//            ),
+//            ListTile(
+//              title: new Text('Repair'),
+//              onTap: () {
+//                Navigator.of(context).pop();
+//                Navigator.push(
+//                    context,
+//                    new MaterialPageRoute(
+//                        builder: (BuildContext context) => new RepairPage()));
+//              },
+//            ),
+//            ListTile(
+//              title: new Text(
+//                'Need Help',
+//                style: TextStyle(color: Colors.pink.withOpacity(1.0)),
+//              ),
+//              onTap: () => AlertDialog(
+//                title: Text("For help"),
+//                content: Text("tel://+918867208322"),
+//              ),
+//            ),
             new Container(
               height: 1,
               width: 1,
@@ -151,9 +153,6 @@ class _BikesPageState extends State<BikesPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 ecobikeImgae(),
-                SizedBox(
-                  height: 10.0,
-                ),
                 Text('E Drives', style: TextStyle(fontSize: 24.0)),
                 SizedBox(
                   height: 10.0,
@@ -161,47 +160,59 @@ class _BikesPageState extends State<BikesPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/appkm.jpg',
-                      height: 40.0,
-                    ),
-                    Text(
-                      'Range/Charge:  120 Km',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/battery-charging-line-icon-web-and-mobile.jpg',
-                      height: 20.0,
-                      width: 50.0,
+                    Column(
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/appkm.jpg',
+                          height: 40.0,
+                        ),
+                        Text(
+                          '120 Km',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 50.0,
                     ),
-                    Text('Charging Time: 2hrs(60%)'),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/battery-charging-line-icon-web-and-mobile.jpg',
+                          height: 40.0,
+                          width: 50.0,
+                        ),
+                        Text('2hrs(60%)'),
+                      ],
+                    ),
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 10.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Rent the E- bicycle for delivery and upto 50% on your vehicle expenditure',
-                    textAlign: TextAlign.center,
-                  ),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.keyboard_arrow_right),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                          'Rent the E- bicycle for delivery and save upto 50% on your vehicle expenditure',
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 10.0,
                 ),
-                Text('Monthly, Weekly, Daily plan for your need'),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.keyboard_arrow_right),
+                    Text('Monthly, Weekly, Daily plan for your need'),
+                  ],
+                ),
                 SizedBox(
                   height: 60.0,
                 ),
