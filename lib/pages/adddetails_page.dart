@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecodrive/services/authentication.dart';
@@ -18,6 +19,8 @@ class Adddetails extends StatefulWidget {
 class _adddetails extends State<Adddetails> {
   FirebaseUser guser;
   bool _isloading = false;
+  int _registeredAsRadioValue;
+  int _workingForRadioValue;
 
   final _formKey = new GlobalKey<FormState>();
   final TextEditingController _filteraddress = new TextEditingController();
@@ -38,8 +41,8 @@ class _adddetails extends State<Adddetails> {
   String phone = '';
 
   String name = '';
-  String workingFor = 'Swiggy';
-  String registeredAs = 'Bike ID';
+  String workingFor;
+  String registeredAs;
 
   _adddetails() {
     _filtername.addListener(() {
@@ -105,6 +108,39 @@ class _adddetails extends State<Adddetails> {
     setnext();
   }
 
+  void handleWorkingForValueChange(int value) {
+    setState(() {
+      _workingForRadioValue = value;
+      switch (_workingForRadioValue) {
+        case 0:
+          workingFor = 'Swiggy';
+          break;
+        case 1:
+          workingFor = 'Zomato';
+          break;
+        case 2:
+          workingFor = 'Others';
+          break;
+      }
+    });
+    print(workingFor);
+  }
+
+  void handleRegisteredAsValueChange(int value) {
+    setState(() {
+      _registeredAsRadioValue = value;
+      switch (_registeredAsRadioValue) {
+        case 0:
+          registeredAs = 'BikeID';
+          break;
+        case 1:
+          registeredAs = 'CycleID';
+          break;
+      }
+    });
+    print(registeredAs);
+  }
+
   void setnext() {
     setState(() {
       this._buildwaitaftervalidat = true;
@@ -161,7 +197,11 @@ class _adddetails extends State<Adddetails> {
 //        phone.length == 15 &&
 //        name != null &&
 //        name.length > 3) {
-    if (name != null && name.length > 3) {
+    if (name != null &&
+        name.length > 3 &&
+        registeredAs != null &&
+        workingFor != null &&
+        address.length > 5) {
       //Navigator.of(context).pop();
       adduserdata(guser);
       if (_validateAndSave()) {
@@ -219,35 +259,64 @@ class _adddetails extends State<Adddetails> {
                   ),
                 ),
               ),
+              new Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                child: new TextField(
+                  controller: _filteraddress,
+                  keyboardType: TextInputType.text,
+                  scrollPadding: const EdgeInsets.all(20.0),
+                  decoration: InputDecoration(
+                    fillColor: Colors.green,
+                    focusColor: Colors.green,
+                    hoverColor: Colors.green,
+                    prefixIcon: new Icon(Icons.location_city),
+                    hintText: "Enter your address (E.g - New Bel Road)",
+                  ),
+                ),
+              ),
               Row(
                 children: <Widget>[
                   Text(
                     'Workinig for: ',
                   ),
                   SizedBox(
-                    width: 10.0,
+                    width: 20.0,
                   ),
-                  DropdownButton<String>(
-                    value: workingFor,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text('Swiggy'),
-                        value: 'Swiggy',
+                  Column(
+                    children: <Widget>[
+                      Radio(
+                        value: 0,
+                        groupValue: _workingForRadioValue,
+                        onChanged: handleWorkingForValueChange,
                       ),
-                      DropdownMenuItem(
-                        child: Text('Zomato'),
-                        value: 'Zomato',
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Others'),
-                        value: 'Others',
-                      ),
+                      Text('Swiggy'),
                     ],
-                    onChanged: (newValue) {
-                      setState(() {
-                        workingFor = newValue;
-                      });
-                    },
+                  ),
+                  SizedBox(
+                    width: 40.0,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Radio(
+                        value: 1,
+                        groupValue: _workingForRadioValue,
+                        onChanged: handleWorkingForValueChange,
+                      ),
+                      Text('Zomato'),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 40.0,
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Radio(
+                        value: 2,
+                        groupValue: _workingForRadioValue,
+                        onChanged: handleWorkingForValueChange,
+                      ),
+                      Text('Others'),
+                    ],
                   ),
                 ],
               ),
@@ -257,43 +326,25 @@ class _adddetails extends State<Adddetails> {
                     'Registered As: ',
                   ),
                   SizedBox(
-                    width: 10.0,
+                    width: 20.0,
                   ),
-                  DropdownButton<String>(
-                    value: registeredAs,
-                    items: [
-                      DropdownMenuItem(
-                        child: Text('Bike ID'),
-                        value: 'Bike ID',
-                      ),
-                      DropdownMenuItem(
-                        child: Text('Cycle ID'),
-                        value: 'Cycle ID',
-                      ),
-                    ],
-                    onChanged: (newValue) {
-                      setState(() {
-                        registeredAs = newValue;
-                      });
-                    },
+                  Radio(
+                      value: 0,
+                      groupValue: _registeredAsRadioValue,
+                      onChanged: handleRegisteredAsValueChange),
+                  Text('BikeID'),
+                  SizedBox(
+                    width: 20.0,
                   ),
+                  Radio(
+                      value: 1,
+                      groupValue: _registeredAsRadioValue,
+                      onChanged: handleRegisteredAsValueChange),
+                  Text('CycleID'),
+//
                 ],
               ),
-//              new Padding(
-//                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-//                child: new TextField(
-//                  controller: _filteraddress,
-//                  keyboardType: TextInputType.text,
-//                  scrollPadding: const EdgeInsets.all(20.0),
-//                  decoration: InputDecoration(
-//                    fillColor: Colors.green,
-//                    focusColor: Colors.green,
-//                    hoverColor: Colors.green,
-//                    prefixIcon: new Icon(Icons.location_city),
-//                    hintText: " Enter your address",
-//                  ),
-//                ),
-//              ),
+
 //              new Padding(
 //                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
 //                child: new TextField(

@@ -8,7 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:ecodrive/pages/adddetails_page.dart';
 import 'package:ecodrive/pages/bikes.dart';
-//import 'package:ecodrive/pages/home.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});

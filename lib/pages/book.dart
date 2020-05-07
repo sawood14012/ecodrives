@@ -19,7 +19,7 @@ class _BookState extends State<Book> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Book your Ecodrive",
+          "Book your E Drive",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.green,
@@ -92,15 +92,12 @@ class _BookState extends State<Book> {
                     fontFamily: "Roboto"),
               ),
             ),
-      Padding(
-        padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 24.0),
-        child:
-        new FlatButton(
-            onPressed: () => launch("tel://+918867208322"),
-            child: new Text("Click here for Assistance")
-        ),
-      ),
-
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 24.0),
+              child: new FlatButton(
+                  onPressed: () => launch("tel://+918867208322"),
+                  child: new Text("Click here for Assistance")),
+            ),
           ],
         ),
       ),
@@ -115,7 +112,8 @@ class _BookState extends State<Book> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Booking Confirmed"),
-          content: new Text("You have Pre Booked an Eco-Drive your book id is : " +Bookid),
+          content: new Text(
+              "You have Pre Booked an Eco-Drive your book id is : " + Bookid),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -138,7 +136,8 @@ class _BookState extends State<Book> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Booking Failed"),
-          content: new Text("Your Booking of an Eco-Drive Failed with message: " +code),
+          content: new Text(
+              "Your Booking of an Eco-Drive Failed with message: " + code),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -168,7 +167,6 @@ class _BookState extends State<Book> {
       'name': 'Eco Drives',
       'description': 'Eco Drives Payment',
       'prefill': {'contact': '', 'email': ''},
-
     };
 
     try {
@@ -181,21 +179,20 @@ class _BookState extends State<Book> {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId, timeInSecForIos: 4);
-        _showDialog(response.paymentId);
+    _showDialog(response.paymentId);
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
     Fluttertoast.showToast(
         msg: "ERROR: " + response.code.toString() + " - " + response.message,
         timeInSecForIos: 4);
-        _showDialogerr(response.message);
+    _showDialogerr(response.message);
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
     Fluttertoast.showToast(
         msg: "EXTERNAL_WALLET: " + response.walletName, timeInSecForIos: 4);
   }
-
 
   @override
   void initState() {
