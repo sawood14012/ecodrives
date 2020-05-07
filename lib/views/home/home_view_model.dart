@@ -1,4 +1,4 @@
-import 'package:flutter_template/core/base/base_view_model.dart';
+import 'package:ecodrive/core/base/base_view_model.dart';
 
 class HomeViewModel extends BaseViewModel {
   final String _title = "Home";

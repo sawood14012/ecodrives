@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/core/constants/route_names.dart';
-import 'package:flutter_template/views/home/home_view.dart';
+import 'package:ecodrive/core/constants/route_names.dart';
+import 'package:ecodrive/views/home/home_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

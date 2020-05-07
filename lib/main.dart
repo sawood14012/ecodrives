@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/core/constants/route_names.dart' as routes;
-import 'package:flutter_template/core/router.dart' as router;
-import 'package:flutter_template/core/services/navigator_service.dart';
+import 'package:ecodrive/core/constants/route_names.dart' as routes;
+import 'package:ecodrive/core/router.dart' as router;
+import 'package:ecodrive/core/services/navigator_service.dart';
 import 'core/locator.dart';
 import 'core/managers/dialog_manager.dart';
 import 'core/services/dialog_service.dart';
