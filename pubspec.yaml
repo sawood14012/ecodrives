@@ -1,4 +1,5 @@
 name: ecodrive
+
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -16,6 +17,7 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.2.2 <3.0.0"
 
+
 dependencies:
   flutter:
     sdk: flutter
@@ -28,13 +30,16 @@ dependencies:
   cloud_firestore: ^0.13.5
   provider: ^4.0.5+1
   provider_architecture: ^1.1.1+1
+  logger: ^0.8.0
   razorpay_flutter: 1.1.0
   get_it: ^4.0.2
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons:
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -44,6 +49,7 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon/icon.png"
+
 flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -10,10 +10,15 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:ecodrive/ui/main.dart';
 
+
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
+<<<<<<< HEAD
     await tester.pumpWidget(MyApp());
+=======
+    await tester.pumpWidget(MainApplication());
+>>>>>>> flutter_template/master
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

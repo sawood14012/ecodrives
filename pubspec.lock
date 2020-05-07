@@ -141,6 +141,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
+=======
+>>>>>>> flutter_template/master
   flutter:
     dependency: "direct main"
     description: flutter
@@ -184,6 +186,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+
   image:
     dependency: transitive
     description:
@@ -198,6 +201,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1+1"
+
   matcher:
     dependency: transitive
     description:
@@ -254,6 +258,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+
   provider:
     dependency: "direct main"
     description:
@@ -282,6 +287,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+
   sky_engine:
     dependency: transitive
     description: flutter
@@ -360,3 +366,4 @@ packages:
 sdks:
   dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.4 <2.0.0"
+
