@@ -38,6 +38,8 @@ dependencies:
   expandable_card: ^0.0.3+1
   link: ^1.0.0
   flutter_datetime_picker:
+  url_launcher: ^5.4.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

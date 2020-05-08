@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecodrive/pages/book.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'rides.dart';
 import 'verify_profile.dart';
 import 'loyality_page.dart';
@@ -234,14 +235,14 @@ class _BikesPageState extends State<BikesPage> {
       floatingActionButton: Transform.scale(
         scale: 1.5,
         child: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Book(),
-              ),
-            );
+          onPressed: () async {
+            const url =
+                'https://docs.google.com/forms/d/e/1FAIpQLSdtrx-wZTD7vnWGFm8vNQhgd9cWb4vQo7kAxRVzcGdYEXDQWQ/viewform?usp=sf_link';
+            if (await canLaunch(url)) {
+              await launch(url);
+            } else {
+              throw 'Could not launch $url';
+            }
           },
           child: Text(
             "RENT",
