@@ -24,7 +24,12 @@ class MainApplication extends StatelessWidget {
         ),
       ),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColorDark: Color(0x00796B),
+        primaryColorLight: Color(0xB2DFDB),
+        primaryColor: Color(0x009688),
+        iconTheme: IconThemeData(color: Color(0xFFFFFF)),
+        accentColor: Color(0x4CAF50),
+        dividerColor: Color(0xBDBDBD),
       ),
       initialRoute: routes.HomeViewRoute,
       onGenerateRoute: router.generateRoute,
