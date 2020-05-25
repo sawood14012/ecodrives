@@ -2,13 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ecodrive/pages/book.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'rides.dart';
-import 'verify_profile.dart';
-import 'loyality_page.dart';
-import 'complaint_box.dart';
-import 'repair_page.dart';
 
 final userRef = Firestore.instance.collection('users');
 
@@ -23,7 +17,6 @@ class _BikesPageState extends State<BikesPage> {
   String location;
   @override
   void initState() {
-    // TODO: implement initState
     setState(() {
       getUsers();
     });
@@ -199,7 +192,7 @@ class _BikesPageState extends State<BikesPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          'Rent the E- bicycle for delivery and save upto 50% on your vehicle expenditure',
+                          'Rent E - bike and save upto 50% on your vehicle expenditure',
                         ),
                       ),
                     ),

@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:ecodrive/services/authentication.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Adddetails extends StatefulWidget {
@@ -19,7 +17,6 @@ class Adddetails extends StatefulWidget {
 class _adddetails extends State<Adddetails> {
   FirebaseUser guser;
   bool _isloading = false;
-  int _registeredAsRadioValue;
   int _workingForRadioValue;
 
   final _formKey = new GlobalKey<FormState>();
@@ -41,8 +38,7 @@ class _adddetails extends State<Adddetails> {
   String phone = '';
 
   String name = '';
-  String workingFor;
-  String registeredAs;
+  String purpose;
 
   _adddetails() {
     _filtername.addListener(() {
@@ -100,11 +96,8 @@ class _adddetails extends State<Adddetails> {
       'uid': user.uid,
       'license': "",
       'Verified': false,
-      'Working for': workingFor,
-      "Registered as": registeredAs,
+      'Purpose': purpose,
     });
-    print(workingFor);
-    print(registeredAs);
     setnext();
   }
 
@@ -113,32 +106,17 @@ class _adddetails extends State<Adddetails> {
       _workingForRadioValue = value;
       switch (_workingForRadioValue) {
         case 0:
-          workingFor = 'Swiggy';
+          purpose = 'Swiggy';
           break;
         case 1:
-          workingFor = 'Zomato';
+          purpose = 'Zomato';
           break;
         case 2:
-          workingFor = 'Others';
+          purpose = 'Others';
           break;
       }
     });
-    print(workingFor);
-  }
-
-  void handleRegisteredAsValueChange(int value) {
-    setState(() {
-      _registeredAsRadioValue = value;
-      switch (_registeredAsRadioValue) {
-        case 0:
-          registeredAs = 'BikeID';
-          break;
-        case 1:
-          registeredAs = 'CycleID';
-          break;
-      }
-    });
-    print(registeredAs);
+    print(purpose);
   }
 
   void setnext() {
@@ -199,8 +177,7 @@ class _adddetails extends State<Adddetails> {
 //        name.length > 3) {
     if (name != null &&
         name.length > 3 &&
-        registeredAs != null &&
-        workingFor != null &&
+        purpose != null &&
         address.length > 5) {
       //Navigator.of(context).pop();
       adduserdata(guser);
@@ -277,7 +254,7 @@ class _adddetails extends State<Adddetails> {
               Row(
                 children: <Widget>[
                   Text(
-                    'Workinig for: ',
+                    'Purpose: ',
                   ),
                   SizedBox(
                     width: 20.0,
@@ -320,31 +297,6 @@ class _adddetails extends State<Adddetails> {
                   ),
                 ],
               ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Registered As: ',
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Radio(
-                      value: 0,
-                      groupValue: _registeredAsRadioValue,
-                      onChanged: handleRegisteredAsValueChange),
-                  Text('BikeID'),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  Radio(
-                      value: 1,
-                      groupValue: _registeredAsRadioValue,
-                      onChanged: handleRegisteredAsValueChange),
-                  Text('CycleID'),
-//
-                ],
-              ),
-
 //              new Padding(
 //                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
 //                child: new TextField(
